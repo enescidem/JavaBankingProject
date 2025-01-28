@@ -1,0 +1,225 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.awt.Window.Type;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.CardLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextPane;
+import javax.swing.JProgressBar;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JFormattedTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.awt.Toolkit;
+import javax.swing.JTable;
+import javax.swing.border.CompoundBorder;
+import javax.swing.JScrollPane;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfTemplate;
+import com.lowagie.text.pdf.PdfWriter;
+import java.awt.BorderLayout;
+import java.awt.Graphics2D;
+import java.io.FileOutputStream;
+
+
+
+public class HareketDokumuSayfasi {
+	
+	
+	public static String _kimlik;
+	private JFrame HareketDokumuSayfasiFrame;
+	private JTable table;
+
+	public static String[] kolonlar = {"Hesap No", "TC Kimlik No", "Ad", "Soyad", "İşlem", "Tarih"};
+	String[][] satirlar = getAllBooks();
+	
+	
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					HareketDokumuSayfasi window = new HareketDokumuSayfasi();
+					window.HareketDokumuSayfasiFrame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		
+	}
+
+	
+	public String[][] getAllBooks() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bankaproje?useUnicode=true&characterEncoding=utf-8","root","");  
+			PreparedStatement stmt=con.prepareStatement("SELECT girissayfasi.HesapNo, girissayfasi.TcKimlikNo, girissayfasi.Ad, girissayfasi.Soyad, Islem, Tarih FROM hareketdokumu LEFT JOIN girissayfasi ON hareketdokumu.HesapNo=girissayfasi.HesapNo WHERE girissayfasi.TcKimlikNo = '"+AnaSayfa._kimlik+"' ORDER BY Tarih DESC");
+			ResultSet rs=stmt.executeQuery();
+			ArrayList<String[]> AllBookList = new ArrayList<String[]>();
+			
+				while(rs.next()) {
+					String[] temp = new String[6];
+					temp[0] = rs.getString(1);
+					temp[1] = rs.getString(2);
+					temp[2] = rs.getString(3);
+					temp[3] = rs.getString(4);
+					temp[4] = rs.getString(5);
+					temp[5] = rs.getString(6);
+					AllBookList.add(temp);
+				}
+			String[][] GetAllBookArray = AllBookList.toArray(String[][]::new);
+			return GetAllBookArray;
+		} catch (Exception e1) {
+			System.out.println(e1);
+			return null;
+		}
+	}
+	
+
+
+	public HareketDokumuSayfasi() {
+		initialize();
+	}
+
+	 
+	private void initialize() {
+		
+		HareketDokumuSayfasiFrame = new JFrame();
+		HareketDokumuSayfasiFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(HareketDokumuSayfasi.class.getResource("/images/bank.png")));
+		HareketDokumuSayfasiFrame.setResizable(false);
+		HareketDokumuSayfasiFrame.getContentPane().setForeground(Color.DARK_GRAY);
+		HareketDokumuSayfasiFrame.getContentPane().setBackground(Color.DARK_GRAY);
+		HareketDokumuSayfasiFrame.getContentPane().setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 136, 520, 420);
+		scrollPane.setBackground(Color.DARK_GRAY);
+		HareketDokumuSayfasiFrame.getContentPane().add(scrollPane);
+		
+		
+		
+		table = new JTable(satirlar,kolonlar);//satirlar,kolonlar
+		table.setDefaultEditor(Object.class, null);
+		table.setForeground(new Color(77, 173, 254));
+		table.setBackground(Color.DARK_GRAY);
+		table.setBounds(10, 136, 520, 2);
+		table.setFont(new Font("Tahoma", Font.BOLD, 10));
+		
+		scrollPane.setViewportView(table);
+		
+		
+		
+		JLabel L_IslemGecmisi = new JLabel("İŞLEM GEÇMİŞİ");
+		L_IslemGecmisi.setFont(new Font("Tahoma", Font.BOLD, 50));
+		L_IslemGecmisi.setToolTipText("SUWİ BANKASI");
+		L_IslemGecmisi.setHorizontalAlignment(SwingConstants.CENTER);
+		L_IslemGecmisi.setForeground(Color.GRAY);
+		L_IslemGecmisi.setBounds(10, 71, 520, 54);
+		HareketDokumuSayfasiFrame.getContentPane().add(L_IslemGecmisi);
+		
+		JButton Indir_Btn = new JButton(" PDF OLARAK YAZDIR");
+		Indir_Btn.setIcon(new ImageIcon(HareketDokumuSayfasi.class.getResource("/images/down-arrow.png")));
+		Indir_Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DosyaYaz(table);
+				JOptionPane.showMessageDialog(null, "Dosyanız Başarılı Bir Şekilde İndirilmiştir.\nDosyanıza projenin olduğu dizindeki ./hareketdokumu/Hareket Dökümü.pdf yolunu takip ederek ulaşabilirsiniz!\nOk tuşuna bastığızında dosya açılacaktır.");
+				try {
+			        File myFile = new File("./hareketdokumu/Hareket Dökümü.pdf");
+			        Desktop.getDesktop().open(myFile);
+			    } catch (IOException ex) {
+			        // no application registered for PDFs
+			    }
+			}
+		});
+		Indir_Btn.setForeground(new Color(77, 173, 254));
+		Indir_Btn.setFont(new Font("Tahoma", Font.BOLD, 38));
+		Indir_Btn.setBackground(Color.DARK_GRAY);
+		Indir_Btn.setBounds(10, 586, 520, 64);
+		HareketDokumuSayfasiFrame.getContentPane().add(Indir_Btn);
+		
+		JButton OncekiSayfa = new JButton("");
+		OncekiSayfa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HareketDokumuSayfasiFrame.setVisible(false);
+				GirisSayfasi.main(null);
+			}
+		});
+		OncekiSayfa.setIcon(new ImageIcon(HareketDokumuSayfasi.class.getResource("/images/back.png")));
+		OncekiSayfa.setBackground(Color.DARK_GRAY);
+		OncekiSayfa.setBounds(0, 0, 64, 64);
+		HareketDokumuSayfasiFrame.getContentPane().add(OncekiSayfa);
+		
+		HareketDokumuSayfasiFrame.setTitle("SUW\u0130 BANK");
+		HareketDokumuSayfasiFrame.setFont(new Font("Segoe UI Semilight", Font.BOLD | Font.ITALIC, 30));
+		HareketDokumuSayfasiFrame.setForeground(Color.DARK_GRAY);
+		HareketDokumuSayfasiFrame.setBackground(Color.DARK_GRAY);
+		HareketDokumuSayfasiFrame.setBounds(100, 100, 556, 700);
+		HareketDokumuSayfasiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		HareketDokumuSayfasiFrame.setLocationRelativeTo(null);
+	}
+	private static void DosyaYaz(JTable table){
+		try {
+			Document document = new Document();
+		    PdfWriter writer;
+
+		    writer = PdfWriter.getInstance(document, new FileOutputStream("./hareketdokumu/Hareket Dökümü.pdf"));
+		    
+		    document.open();
+		    PdfContentByte cb = writer.getDirectContent();
+
+		    PdfTemplate tp = cb.createTemplate(500, 500);
+		    Graphics2D g2;
+
+		    g2 = tp.createGraphicsShapes(500, 500);
+
+		    
+		    table.print(g2);
+		    g2.dispose();
+		    cb.addTemplate(tp, 30, 300);
+
+		    // step 5: we close the document
+		    document.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	    
+  }
+}
+

@@ -1,0 +1,11 @@
+INDEX VERSION 1.134+C:\Users\Enes\Desktop\YEDEKLER\YEDEK2(24.10.2022)\JavaProje\.metadata\.plugins\org.eclipse.jdt.core
+1343739733.index
+699053414.index
+862341801.index
+1865797976.index
+1321709678.index
+3582508892.index
+96466294.index
+943843670.index
+3715033625.index
+2071835992.index

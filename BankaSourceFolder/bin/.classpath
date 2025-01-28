@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="src/" kind="src" path=""/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Enes/Desktop/YEDEKLER/YEDEK2(24.10.2022)/JavaProje/BankaSourceFolder/jarFolder/dovizAPI-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Enes/Desktop/YEDEKLER/YEDEK2(24.10.2022)/JavaProje/BankaSourceFolder/jarFolder/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Enes/Desktop/YEDEKLER/YEDEK2(24.10.2022)/JavaProje/BankaSourceFolder/jarFolder/itext-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Enes/Desktop/YEDEKLER/YEDEK2(24.10.2022)/JavaProje/BankaSourceFolder/jarFolder/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Enes/Desktop/YEDEKLER/YEDEK2(24.10.2022)/JavaProje/BankaSourceFolder/jarFolder/jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Enes/Desktop/YEDEKLER/YEDEK2(24.10.2022)/JavaProje/BankaSourceFolder/jarFolder/jsoup-1.15.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Enes/Desktop/YEDEKLER/YEDEK2(24.10.2022)/JavaProje/BankaSourceFolder/jarFolder/mysql-connector.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
