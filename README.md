@@ -7,11 +7,31 @@
 https://github.com/user-attachments/assets/0c70032b-bde7-4346-a9cc-1df1f55df9c7
 
 
-# Proje Tanıtımı: SUWİ BANK
+# Suwi Bank - Banka Yönetim Sistemi 
 
-Bu proje, **Java** programlama dili kullanılarak geliştirilmiş ve **MySQL** veritabanı ile entegre edilmiştir. Veritabanı yönetimi için **phpMyAdmin** kullanılmıştır. Proje, temel banka işlemlerini gerçekleştiren bir masaüstü uygulamasıdır.
+Bu proje, kullanıcıların bankacılık işlemlerini güvenli ve kolay bir şekilde gerçekleştirebileceği bir masaüstü bankacılık uygulamasıdır.  
 
----
+## 🚀 Projenin Amacı  
+
+Sistem, kullanıcıların aşağıdaki işlemleri gerçekleştirmesini sağlar:  
+
+✅ TC Kimlik No ve şifre ile güvenli giriş yapma  
+✅ Yeni hesap oluşturma  
+✅ Şifre sıfırlama işlemleri  
+✅ Hesap bakiyesini görüntüleme  
+✅ Para yatırma ve çekme işlemleri  
+✅ Başka bir hesaba havale yapma  
+✅ Güncel döviz kurlarını görüntüleme  
+✅ İşlem geçmişini görüntüleyip **PDF** olarak kaydetme  
+✅ Kişisel bilgileri güncelleme ve hesap silme  
+
+## 🛠 Kullanılan Teknolojiler  
+
+- **🖥 Programlama Dili:** Java  
+- **🎨 Arayüz:** Swing GUI  
+- **🗄 Veritabanı:** MySQL  
+- **🔗 Bağlantı:** JDBC  
+- **💻 Geliştirme Ortamı:** Eclipse IDE
 
 ## 🚀 Kurulum ve Başlangıç
 
