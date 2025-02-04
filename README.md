@@ -1,4 +1,4 @@
-# Bank Projevt (Java)
+# Bank Project (Java)
  
 
 
