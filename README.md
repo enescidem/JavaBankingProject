@@ -1,6 +1,10 @@
 # Banking Project (Java)
  
+### Medium Links:
 
+English: https://medium.com/@enescidem/java-banking-project-mysql-6bc1f2e470a5
+
+Türkçe: https://medium.com/@enescidem/java-banka-projesi-mysql-c74e2d93168f
 
 
 
