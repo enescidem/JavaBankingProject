@@ -2,9 +2,9 @@
  
 ### Medium Links:
 
-English: https://medium.com/@enescidem/jwt-authentication-user-management-with-typescript-express-bcac5ed28248
+English: https://medium.com/@enescidem/java-banking-project-mysql-6bc1f2e470a5
 
-Turkish: https://medium.com/@enescidem/typescript-express-ile-jwt-kimlik-doğrulama-ve-kullanıcı-yönetim-sistemi-b4ec1c66f723
+Turkish: https://medium.com/@enescidem/java-banka-projesi-mysql-c74e2d93168f
 
 
 
